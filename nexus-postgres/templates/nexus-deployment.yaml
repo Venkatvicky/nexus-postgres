@@ -27,11 +27,18 @@ spec:
             - name: NEXUS_DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: nexus-postgres-secret
-                  key: password
+                  name: nexus-secret
+                  key: POSTGRES_PASSWORD
           volumeMounts:
             - name: nexus-storage
               mountPath: /nexus-data
+          resources:
+            requests:
+              memory: "2Gi"
+              cpu: "1"
+            limits:
+              memory: "4Gi"
+              cpu: "2"
       volumes:
         - name: nexus-storage
           persistentVolumeClaim:
