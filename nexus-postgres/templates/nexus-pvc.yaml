@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: nexus-pvc
 spec:
-  storageClassName: {{ .Values.nexus.storage.storageClassName }}
+  storageClassName: {{ .Values.nexus.storageClassName }}
   accessModes:
     - ReadWriteOnce
   resources:
