@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexus
+spec:
+  replicas: {{ .Values.nexus.replicaCount }}
+  selector:
+    matchLabels:
+      app: nexus
+  template:
+    metadata:
+      labels:
+        app: nexus
+    spec:
+      containers:
+        - name: nexus
+          image: {{ .Values.nexus.image }}
+          ports:
+            - containerPort: 8081
+          env:
+            - name: NEXUS_DB_HOST
+              value: "postgresql"
+            - name: NEXUS_DB_NAME
+              value: {{ .Values.postgresql.database }}
+            - name: NEXUS_DB_USER
+              value: {{ .Values.postgresql.username }}
+            - name: NEXUS_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nexus-postgres-secret
+                  key: password
+          volumeMounts:
+            - name: nexus-storage
+              mountPath: /nexus-data
+      volumes:
+        - name: nexus-storage
+          persistentVolumeClaim:
+            claimName: nexus-pvc

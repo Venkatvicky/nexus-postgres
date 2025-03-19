@@ -1,0 +1,5 @@
+apiVersion: v2
+name: nexus-helm-chart
+description: Helm chart for deploying Nexus OSS with PostgreSQL backend
+version: 1.0.0
+appVersion: "3.71.0"

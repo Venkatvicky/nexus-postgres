@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nexus-config
+data:
+  nexus.properties: |
+    nexus.datastore.enabled=true
+    nexus.datastore.type=postgresql
+    nexus.datastore.jdbcUrl=jdbc:postgresql://postgresql:5432/{{ .Values.postgresql.database }}
+    nexus.datastore.username={{ .Values.postgresql.username }}
+    nexus.datastore.password={{ .Values.postgresql.password }}
