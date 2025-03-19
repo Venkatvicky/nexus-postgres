@@ -31,7 +31,7 @@ spec:
                   key: password
           volumeMounts:
             - name: nexus-storage
-              mountPath: /mnt/data
+              mountPath: /nexus-data
       volumes:
         - name: nexus-storage
           persistentVolumeClaim:
