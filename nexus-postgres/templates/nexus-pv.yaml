@@ -11,4 +11,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: {{ .Values.nexus.storage.storageClassName }}
   hostPath:
-    path: /mnt/data
+    path: /nexus-data
